@@ -25,13 +25,6 @@
   (sdl2:push-event :quit)
   )
 
-(defun exit-to-main-menu ()
-  (setf state 'title)
-  (setf selection 0)
-  (sdl2-mixer:halt-music)
-  (start-main-menu-music (track-path main-menu-track))
-  )
-
 (defun go-to-options ()
   (setf selection 0)
   (setf sub-state 'options))

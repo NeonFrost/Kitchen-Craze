@@ -34,4 +34,4 @@
 	     (incf g-b 5)
 	     (if (> g-r 245)
 		 (setf color-state 'down)))))
-(add-to-state-render render-game-over-screen game-over 'top)
+(add-to-state-render render-game-over-screen game-over)

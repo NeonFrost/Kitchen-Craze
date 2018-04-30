@@ -2,7 +2,7 @@
 (defvar default-window nil)
 (defvar *screen-width* 0)
 (defvar *screen-height* 0)
-(defvar title-name "Pong")
+(defvar title-name "Kitchen Craze")
 (defvar state 'title)
 (defvar sub-state 'top)
 (defvar changing-state nil) ;;setf changing-state to 'state-to-change-to

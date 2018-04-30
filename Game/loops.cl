@@ -34,4 +34,5 @@
 	spawn-accumulator-limit 500
 	player-spawn-counter 1)
 ;;  (setf state 'level)
-  (start-game-music))
+  (setf volume-state 'changing)
+  (setf *new-track* 'level-track))

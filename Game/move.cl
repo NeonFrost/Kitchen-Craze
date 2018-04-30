@@ -18,6 +18,7 @@
 			     (setf (player-current-cell player) 0))
 			 (setf cell-accumulator 0))))
     ))
+(add-loop-function move-player level 'top)
 
 (defun stop-moving ()
   (case moving

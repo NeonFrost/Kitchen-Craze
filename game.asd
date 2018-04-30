@@ -1,6 +1,6 @@
 (defsystem :game
-  :author "Brandon Blundell"
-  :maintainer "Brandon Blundell"
+  :author "Brandon Blundell | Neon Frost"
+  :maintainer "Brandon Blundell | Neon Frost"
   :license "GPL v3"
   :version "0.9"
   :description "Description."
@@ -28,7 +28,7 @@
 				  ((:file "entities" :type "cl")
 				   (:file "vectors")
 				   (:file "math" :type "cl")
-				   (:file "lib" :type "cl")
+				   ;;;;(:file "rpg-lib" :type "cl")
 				   (:file "move-platformer" :type "cl")))
 			 (:module "audio"
 				  :serial t
@@ -45,11 +45,15 @@
 			:serial t
 			:components
 			((:file "init" :type "cl")
-			 (:file "level" :type "cl")
-			 (:file "grapple" :type "cl")
-			 (:file "render-title-screen" :type "cl")
+			 (:file "items" :type "cl")
+			 (:file "move" :type "cl")
+			 (:file "loops" :type "cl")
+			 (:file "game-over-screen" :type "cl")
+			 (:file "pause-screen" :type "cl")
+			 (:file "room-screen" :type "cl")
+			 (:file "title-screen" :type "cl")
+			 (:file "render-level" :type "cl")
 			 (:file "input" :type "cl")
-			 (:file "player" :type "cl")
 			 ))
 	       (:file "init-assets" :type "cl")
 	       (:file "Main")))

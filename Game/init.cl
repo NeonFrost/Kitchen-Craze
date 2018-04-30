@@ -2,6 +2,8 @@
 (define-state title)
 (define-state level)
 (define-state paused)
+(define-track main-menu-track "Game/assets/Main Menu.ogg") ;;;;:path is relevant to where the program is started
+(define-track level-track "Game/assets/Level.ogg")
 
 (defun confirm-selection ()
   (case state
@@ -18,3 +20,8 @@
 	      (0 (resume-game))
 	      (1 (exit-to-main-menu))
 	      (2 (quit-game))))))
+
+(defun go-to-options ()
+  (setf *selection-row* 0)
+  (setf sub-state 'options))
+

@@ -1,3 +1,6 @@
 (defun initialize-assets ()
-  ;;assets go here, like music, tile-sheets, sprite-sheets, fonts, etc.
+  (load-sheet items-sheet '(32 32))
+  (load-sheet player-sheet '(64 64))
+  (setf *current-track* main-menu-track)
+  (start-music *current-track* :-volume-state- nil)
   )

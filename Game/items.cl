@@ -4,7 +4,6 @@
 			     (height (round (/ *screen-width* 5)))
 			     (width (round (/ *screen-width* 5)))
 			     ))
-  (current-cell 0)
   (health 5)
   (points 0))
 (defvar player (make-player))

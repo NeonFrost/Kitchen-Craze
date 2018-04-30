@@ -1,5 +1,8 @@
 (defvar +track-volume+ 125)
 (defvar max-volume 125)
+(defvar *current-track* nil)
+(defvar *new-track* nil) ;;needs to be a symbol
+(defvar default-volume-state 'increasing)
 (defstruct track
   path
   stream
@@ -18,22 +21,22 @@ int music_internal_position(double position)
 }
 |#
 
-(defun loop-track (track) ;;;;called when the song is 'finished'
+(defun loop-track (track)
   "An helper-function for sdl2-mixer's SetMusicPosition in common lisp. Requires ogg format. Uses the \":sdl2-ffi.functions\" package."
   (sdl2-ffi.functions:mix-set-music-position (coerce (track-loop-point track) 'double-float))
   )
-  
-(define-track main-menu-track "engine/audio/Main Menu.ogg") ;;;;:path is relevant to where the program is started
-(define-track level-track "engine/audio/Level.ogg")
 
-(defun start-music (track &key loop-point (vol-state 'increasing))
+(defun start-music (track &key loop-point (-volume-state- 'increasing))
   (setf (track-stream track) (sdl2-mixer:load-music (track-path track)))
-  (sdl2-mixer:play-music (track-stream level-track) -1)
+  (sdl2-mixer:play-music (track-stream track) -1)
   (if loop-point
       (setf (track-loop-point track) loop-point))
-  (setf volume-state vol-state)
+  (setf volume-state -volume-state-)
   (sdl2-mixer:volume-music +track-volume+)
   )
+
+
+#|
 
 (defun start-level-music (music) ;music is a path
   (setf (track-path level-track) music)
@@ -51,6 +54,8 @@ int music_internal_position(double position)
     (sdl2-mixer:play-music (track-stream main-menu-track) -1)
     )
   )
+
+|#
 
 (defun free-music (track)
   (sdl2-mixer:free-music (track-stream track))
@@ -83,6 +88,20 @@ int music_internal_position(double position)
   (sdl2-mixer:quit)
   )
 
+(defun switch-track-to (track)
+  (setf *new-track* track)
+  (change-track))
+
+(defun change-track ()
+  (sdl2-mixer:halt-music)
+  (if (track-stream *current-track*)
+      (sdl2-mixer:free-music (track-stream *current-track*)))
+  (setf *current-track* (eval *new-track*))
+  (setf *new-track* nil)
+  (if *current-track*
+      (start-music *current-track*)
+      (setf volume-state nil)))
+#|
 (defun change-level-track (music)
   "Stops 'level-track' and changes it to another track. Used upon exit/entrance of a level/area."
   (sdl2-mixer:halt-music)
@@ -91,10 +110,11 @@ int music_internal_position(double position)
   (start-level-music music)
   )
 
+
 (defun start-game-music ()
   (setf volume-state 'track-changing)
   )
-
+|#
 (defun test-music ()
   (case volume-state
     (increasing (if (< +track-volume+ max-volume)
@@ -109,7 +129,7 @@ int music_internal_position(double position)
 			(progn (decf +track-volume+ 10)
 			       (sdl2-mixer:volume-music +track-volume+))
 			(progn (setf volume-state nil)
-			       (change-level-track (track-path level-track)))))))
+			       (change-track))))))
 
 (defun lower-volume (delta)
   (decf max-volume delta)

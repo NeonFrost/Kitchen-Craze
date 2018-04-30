@@ -10,7 +10,7 @@
 (defun render-paused-screen ()
   (render-room)
   (pause-screen)
-  (render-box (menu-x pause-menu) (+ (* selection (cadr character-size)) (round (/ (cadr character-size) 2)) (menu-y pause-menu))
+  (render-box (menu-x pause-menu) (+ (* *selection-row* (cadr character-size)) (round (/ (cadr character-size) 2)) (menu-y pause-menu))
 	      (menu-width pause-menu) (cadr character-size) :color +dark-natural-green+)
   (let ((pause-text-buffer (create-text-buffer (start-string "   Resume   "
 							     " Main  Menu "
@@ -27,4 +27,4 @@
 				    (* (round (/ (menu-width pause-menu) 4)) 3)
 				    (* (cadr character-size) 3)))
     (reset-text-buffer pause-text-buffer)))
-(add-to-state-render render-paused-screen paused 'top)
+(add-to-state-render render-paused-screen paused)

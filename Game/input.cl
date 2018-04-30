@@ -1,3 +1,10 @@
+(defun exit-to-main-menu ()
+  (setf state 'title)
+  (setf *selection-row* 0)
+  (sdl2-mixer:halt-music)
+  (switch-track-to main-menu-track)
+  )
+
 (add-key :scancode-up title :down (change-selection 'up))
 (add-key :scancode-down title :down (change-selection 'down))
 (add-key :scancode-right title :down (if (eq sub-state 'options)
