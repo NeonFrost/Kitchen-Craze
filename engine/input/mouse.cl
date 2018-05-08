@@ -23,7 +23,7 @@
   (setf *mouse-x* x
 	*mouse-y* y
 	*mouse-velocity-x* xrel
-	*mouse-velocity-y* yrel)
-  (if (gethash :move (state-mouse (eval state)))
+	*mouse-velocity-y* yrel))
+#|  (if (gethash :move (state-mouse (eval state)))
       (loop for func in (gethash :move (state-mouse (eval state)))
-	   do (eval func))))
+	   do (eval func))))|#

@@ -2,8 +2,7 @@
   (setf state 'title)
   (setf *selection-row* 0)
   (sdl2-mixer:halt-music)
-  (switch-track-to main-menu-track)
-  )
+  (switch-track-to main-menu-track))
 
 (add-key :scancode-up title :down (change-selection 'up))
 (add-key :scancode-down title :down (change-selection 'down))
@@ -41,8 +40,8 @@
 					     (setf selection 0))))
 
 (add-key :scancode-return level :down (pause-game))
-(add-key :scancode-right level :down (setf moving 'left))
-(add-key :scancode-left level :down (setf moving 'right))
+(add-key :scancode-left level :down (setf moving 'left))
+(add-key :scancode-right level :down (setf moving 'right))
 
 (add-key :scancode-right level :up (stop-moving))
 (add-key :scancode-left level :up (stop-moving))

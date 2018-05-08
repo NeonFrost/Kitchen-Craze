@@ -27,14 +27,14 @@ int music_internal_position(double position)
   )
 
 (defun start-music (track &key loop-point (-volume-state- 'increasing))
-  (setf (track-stream track) (sdl2-mixer:load-music (track-path track)))
-  (sdl2-mixer:play-music (track-stream track) -1)
+  (setf *current-track* track)
+  (setf (track-stream *current-track*) (sdl2-mixer:load-music (track-path *current-track*)))
+  (sdl2-mixer:play-music (track-stream *current-track*) -1)
   (if loop-point
-      (setf (track-loop-point track) loop-point))
+      (setf (track-loop-point *current-track*) loop-point))
   (setf volume-state -volume-state-)
   (sdl2-mixer:volume-music +track-volume+)
   )
-
 
 #|
 
@@ -57,10 +57,6 @@ int music_internal_position(double position)
 
 |#
 
-(defun free-music (track)
-  (sdl2-mixer:free-music (track-stream track))
-)
-
 (defun pause-music ()
   (sdl2-ffi.functions:mix-pause-music)
   )
@@ -78,12 +74,16 @@ int music_internal_position(double position)
 
 (defun quit-audio ()
   (sdl2-mixer:halt-music)
-  (if (track-stream main-menu-track)
+  (if *current-track*
+      (if (track-stream *current-track*)
+	  (progn (sdl2-mixer:free-music (track-stream *current-track*))
+		 (setf *current-track* nil))))
+#|  (if (track-stream main-menu-track)
       (progn (sdl2-mixer:free-music (track-stream main-menu-track))
 	     (setf main-menu-track nil)))
   (if (track-stream level-track)
       (progn (sdl2-mixer:free-music (track-stream level-track))
-	     (setf level-track nil)))
+	     (setf level-track nil)))|#
   (sdl2-mixer:close-audio)
   (sdl2-mixer:quit)
   )

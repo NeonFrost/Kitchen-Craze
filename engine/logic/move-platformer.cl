@@ -1,7 +1,7 @@
 (defvar **game-type** 'platformer)
 ;;;;use vectors
 ;;;;SHeet orientation Down, up, right, left
-(defun tamias-move-entity (entity &key (friction t))
+(defun move-entity (entity &key (friction t))
   ;;eventually add in a case statement that goes through the different game types
   #|(case **game-type**
   (platformer (handle-platformer-movement entity friction))
@@ -17,7 +17,7 @@
   (if friction
       (set-vector-3d-values (t-object-vector entity) nil :function 'multiply :scalar 0.8))
   (if (t-object-sprite-sheet entity)
-      (handle-animation entity)))
+      (tamias-handle-animation entity)))
 
 (defun tamias-handle-animation (entity)
   (incf cell-accumulator 10)

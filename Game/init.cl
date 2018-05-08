@@ -4,6 +4,7 @@
 (define-state paused)
 (define-track main-menu-track "Game/assets/Main Menu.ogg") ;;;;:path is relevant to where the program is started
 (define-track level-track "Game/assets/Level.ogg")
+(defvar moving nil)
 
 (defun confirm-selection ()
   (case state
