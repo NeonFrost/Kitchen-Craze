@@ -3,7 +3,7 @@
 (defvar minutes-accumulator 0)
 (defvar hours-accumulator 0)
 (defvar frames-accumulator 0)
-(defvar fps 30)
+(defvar fps 15)
 
 (defun render-background ()
   (if room-buffer
