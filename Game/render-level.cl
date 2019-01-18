@@ -15,8 +15,7 @@
 				      (+ (menu-y kitchen-menu) (floor (/ (menu-height kitchen-menu) 4)))
 				      (menu-width kitchen-menu)
 				      (floor (/ (menu-height kitchen-menu) 2))))
-      (setf room-buffer (sdl2:create-texture-from-surface renderer (sdl2-image:load-image "Game/assets/background.png")))
-      ))
+      (setf room-buffer (sdl2:create-texture-from-surface renderer (sdl2-image:load-image "Game/assets/background.png")))))
 
 (defun render-stats ()
   ;;health is represented by the tofu cell
@@ -53,12 +52,12 @@
 			(setf seconds-accumulator 0)))
 	       (if (> minutes-accumulator 59)
 		   (progn (incf hours-accumulator 1)
-			  (setf minutes-accumulator 0)))))
-    ))
+			  (setf minutes-accumulator 0)))))))
 
 (defun render-player ()
-  (draw-cell player-sheet (player-current-cell player) (player-x player) (player-y player) :width (player-width player) :height (player-height player))
-  )
+  (draw-cell player-sheet (player-current-cell player)
+	     (player-x player) (player-y player)
+	     :width (player-width player) :height (player-height player)))
 
 (defun render-items ()
   (if falling-items
@@ -96,6 +95,5 @@
   (render-player)
   (render-items)
   (draw-menu status-menu)
-  (render-stats)
-  )
+  (render-stats))
 (add-to-state-render render-room level)

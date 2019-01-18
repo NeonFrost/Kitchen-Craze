@@ -76,11 +76,16 @@ starting sequence
 	     (setf +font-sheet+ nil)))
   )
 
-(defun create-exec (&key linking (name "main"))
+(defun create-exec (&key linking (name "main") (system :game))
+  (if (not name)
+      (setf name "main"))
+  (if (not (stringp name))
+      (setf name (write-to-string name)))
   (case linking
     (image (asdf:load-system :cffi-grovel)
-	   (asdf:operate :static-image-op :game))
-    (app (asdf:load-system :cffi-grovel)
-	   (asdf:operate :static-program-op :game))
-    (otherwise (sb-ext:save-lisp-and-die name :toplevel #'main :executable t)))
-  )
+	   (asdf:operate :static-image-op system))
+    (app (asdf:make system))
+    (otherwise #+clisp (ext:saveinitmem name :init-function #'main :executable t)
+	       #+sbcl (sb-ext:save-lisp-and-die name :toplevel #'main :executable t))))
+
+;;(create-exec :linking 'app :name "KC-T")

@@ -16,8 +16,7 @@
 	       (progn (if (< (player-current-cell player) 3)
 			     (incf (player-current-cell player) 1)
 			     (setf (player-current-cell player) 0))
-			 (setf cell-accumulator 0))))
-    ))
+			 (setf cell-accumulator 0))))))
 (add-loop-function move-player level 'top)
 
 (defun stop-moving ()

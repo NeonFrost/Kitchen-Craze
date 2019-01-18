@@ -33,6 +33,7 @@
 (add-key :scancode-up paused :down (change-selection 'up))
 (add-key :scancode-down paused :down (change-selection 'down))
 (add-key :scancode-z paused :up (confirm-selection))
+(add-key :scancode-return paused :up (confirm-selection))
 (add-key :scancode-x paused :up (case sub-state
 				  (options (setf sub-state nil)
 					   (setf selection 3))

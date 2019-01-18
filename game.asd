@@ -4,6 +4,9 @@
   :license "GPL v3"
   :version "0.9"
   :description "Description."
+  :build-operation program-op
+  :build-pathname "vidya"
+  :entry-point "cl-user::main"
   :depends-on (:sdl2
 	       :sdl2-image
 	       :sdl2-mixer)
@@ -46,6 +49,7 @@
 			:components
 			((:file "init" :type "cl")
 			 (:file "items" :type "cl")
+			 (:file "item-builders" :type "cl")
 			 (:file "move" :type "cl")
 			 (:file "loops" :type "cl")
 			 (:file "game-over-screen" :type "cl")
@@ -57,3 +61,11 @@
 			 ))
 	       (:file "init-assets" :type "cl")
 	       (:file "Main")))
+
+
+(defsystem :game/kc-t
+  :build-operation program-op
+  :build-pathname "KC-T"
+  :entry-point "main"
+  :depends-on ("game")
+  :components ())

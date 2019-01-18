@@ -1,6 +1,7 @@
 (defvar title-menus nil)
 (define-menu title-menu title-menus 0 0 *screen-width* *screen-height* '(127 127 127 255) +black+)
 (define-screen title-screen title-menus)
+;;start-string adds a newline to each string and combines them together
 (defvar game-info (start-string "        Soi Boi is not trademarked, is in the public domain, and is *not* for sale          "
 				"Soi Boi's assets were created by Brandon Blundell (Neon Frost) and are in the public domain "))
 (defvar title-screen-string (start-string "Begin New Game"
@@ -64,7 +65,6 @@
 						 (- (round (/ *screen-height* 2)) (* 4 (cadr character-size)))
 						 (* (length " Begin New Game ") (car character-size))
 						 (* (cadr character-size) 6)))
-		 (reset-text-buffer title-screen-buffer)
-		 ))))
+		 (reset-text-buffer title-screen-buffer)))))
 
 (add-to-state-render render-title-screen title)
