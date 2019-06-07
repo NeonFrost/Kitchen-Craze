@@ -2,8 +2,8 @@
 (define-menu title-menu title-menus 0 0 *screen-width* *screen-height* '(127 127 127 255) +black+)
 (define-screen title-screen title-menus)
 ;;start-string adds a newline to each string and combines them together
-(defvar game-info (start-string "        Soi Boi is not trademarked, is in the public domain, and is *not* for sale          "
-				"Soi Boi's assets were created by Brandon Blundell (Neon Frost) and are in the public domain "))
+(defvar game-info (start-string "     Kitchen Craze is not trademarked, is in the public domain, and is not for sale    "
+				"KC's assets were created by Brandon Blundell (Neon Frost) and are in the public domain "))
 (defvar title-screen-string (start-string "Begin New Game"
 					  "   Settings   "
 					  "     Quit     "))
