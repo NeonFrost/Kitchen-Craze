@@ -8,6 +8,7 @@ With the release of SBCL 2.3.2 Kitchen Craze can now be run on Windows. The only
 # Releases
 
 Zips of KC can be found here: https://www.indiedb.com/games/kitchen-craze/downloads
+
 Unzip and then execute "vidya" (VOLUME WARNING)
 
 # Running
